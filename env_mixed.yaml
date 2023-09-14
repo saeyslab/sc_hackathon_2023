@@ -1,0 +1,64 @@
+name: ghent_hackathon_mixed
+channels:
+  - conda-forge
+  - bioconda
+  - r
+  - defaults
+dependencies:
+  # R
+  # R 4.3 and Bioconductor 3.17 seem to have some package issues, so pin to 4.2 and 3.16 for now
+  - r-base=4.2
+  - r-irkernel
+  - r-recommended
+  - r-devtools
+  - r-ggplot2
+  - r-patchwork
+  - r-biocmanager
+  - r-quarto
+  - bioconductor-biobase
+  - bioconductor-experimenthub
+  - bioconductor-annotationhub
+  - bioconductor-rhdf5
+  - bioconductor-ebimage
+  - bioconductor-biocstyle
+  - bioconductor-spatialexperiment
+  - bioconductor-zellkonverter
+  ## cytoviewer
+  # pre-unlink script failed for package bioconda/noarch::bioconductor-imcdatasets-1.6.0-r42hdfd78af_0
+  - bioconductor-imcdatasets
+  # package bioconductor-cytoviewer-1.0.0-r43hdfd78af_0 requires bioconductor-s4vectors >=0.38.0,<0.39.0, but none of the providers can be installed
+  # - bioconductor-cytoviewer
+  - bioconductor-cytomapper
+  ## moleculeexperiment
+  # package bioconductor-moleculeexperiment-1.0.1-r43hdfd78af_0 requires bioconductor-spatialexperiment >=1.10.0,<1.11.0, but none of the providers can be installed
+  # - bioconductor-moleculeexperiment
+  ## anndataR
+  - r-r6
+  - r-anndata
+  - r-knitr
+  - r-reticulate
+  - bioconductor-rhdf5
+  - r-rmarkdown
+  - r-seuratobject
+  - bioconductor-singlecellexperiment
+  - bioconductor-summarizedexperiment
+  - bioconductor-s4vectors
+  - r-withr
+  # Jupyter
+  - jupyterlab
+  - nb_conda_kernels
+  # Python
+  - python=3.10
+  - napari=0.4.18
+  - pyqt
+  - zarr
+  - anndata>=0.9.1
+  - pyarrow
+  - pip
+  - pip:
+    # git repo
+    - git+https://github.com/scverse/spatialdata.git@main
+    # dependencies from spatialdata[extra]
+    - napari-spatialdata>=0.2.4
+    - spatialdata-plot
+    - spatialdata-io
