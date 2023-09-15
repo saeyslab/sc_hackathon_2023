@@ -3,7 +3,7 @@ Ghent hackathon on Python/R interoperability for single cell and spatial bioinfo
 
 ## Installation
 
-Simultuneos development of Python and R packages be tricky, as they have different packages managers and practises. Below is an example workflow to setup an Python and R conda environment to get the code examples up and running. VS Code is presumed as IDE, but Jupyter Lab and RStudio also support conda environments.
+Simultaneous development of Python and R packages be tricky, as they have different packages managers and practices. Below is an example workflow to setup an Python and R conda environment to get the code examples up and running. VS Code is presumed as IDE, but Jupyter Lab and RStudio also support conda environments.
 
 - If you have Windows, you can use the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install) to install a Linux distribution. You can then use the Linux instructions below.
 - If you have a Macbook with M1 chip, you can use the instructions at the bottom of this page.
@@ -19,7 +19,7 @@ In the `examples` folder, there are some examples of how to use the packages. Th
 
 ## Working with conda kernels
 
-You can use the `conda` environment as a kernel in Jupyter Lab or VS Code. This will allow you to use the environment in a notebook. You can also use the `conda` environment as a kernel in RStudio. Make sure the environment you want to use has a kernel installed such as `ipykernel` or `r-irkernel`. VS Code should pick up on the kernel, especially if you do a `Reload Window`. You can also install [nb_conda_kernels](https://github.com/Anaconda-Platform/nb_conda_kernels) in the main environment if you want to use Jupyter Lab.
+You can use the `conda` environment as a kernel in Jupyter Lab or VS Code. This will allow you to use the environment in a notebook. You can also use the `conda` environment as a kernel in RStudio. Make sure the environment you want to use has a kernel installed such as `ipykernel` or `r-irkernel`. VS Code should pick up on the kernel, especially if you do a `Reload Window`. You can also use Jupyter Lab and [nb_conda_kernels](https://github.com/Anaconda-Platform/nb_conda_kernels) in the main environment.
 
 You can use quarto within the conda environment, but using quarto to access an external conda environment requires [an extra configuration step](https://quarto.org/docs/computations/python.html#kernel-selection).
 
@@ -45,15 +45,15 @@ if (!requireNamespace("anndataR", quietly = TRUE))
 
 ## Macbook ARM support
 If you want to run on a Macbook with M1 chip, you need to do one of the following if you want to use Conda and R packages (as [Bioconda does not yet support ARM on Mac](https://github.com/bioconda/bioconda-recipes/issues/23454)):
-1. use a Linux virtual machine (e.g. [UTM and VS Code](https://medium.com/@lizrice/linux-vms-on-an-m1-based-mac-with-vscode-and-utm-d73e7cb06133))
-2. use a remote Linux workstation (this can have problems if you want to use graphical interfaces such as RStudio, napari, plotting...)
-2. install using the `env_mixed_arm.yaml` (without bioconda channel) instead of `env_mixed.yaml`. The BioCManager will then manually install all remaining packages (>5min).
-3. install using the `env.yaml`, but emulate the x86 architecture using [Rosetta](https://support.apple.com/en-us/HT211861). This will but will be faster than option 2, but hacking lowlevel packages could give wrong architecture errors due to the emulation.
+1. SLOW: use a Linux virtual machine (e.g. [UTM and VS Code](https://medium.com/@lizrice/linux-vms-on-an-m1-based-mac-with-vscode-and-utm-d73e7cb06133))
+2. WORKS: use a remote Linux workstation (this can have problems if you want to use graphical interfaces such as RStudio, napari, plotting...)
+3. FAILS: install using the `env_mixed_arm.yaml` (without bioconda channel) instead of `env_mixed.yaml`. The BioCManager will then manually install all remaining packages (>5min).
+4. FAILS: install using the `env_mixed.yaml`, but emulate the x86 architecture using [Rosetta](https://support.apple.com/en-us/HT211861). This will but will be faster than option 2, but hacking low level packages could give wrong architecture errors due to the emulation.
     ```
     CONDA_SUBDIR=osx-64 conda env update -f env_mixed.yaml
     ```
 
-When using option 3, you can test you're actively using Rosetta using a `python` shell after environment activation:
+When using option 4, you can test you're actively using Rosetta using a `python` shell after environment activation:
 ```python
 import platform, subprocess
 platform.processor() # should return 'i386' if using Rosetta

@@ -1,0 +1,22 @@
+name: ghent_hackathon_python
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Jupyter
+  - jupyterlab
+  # Python
+  - python=3.10
+  - napari=0.4.18
+  - pyqt
+  - zarr
+  - anndata>=0.9.1
+  - pyarrow
+  - pip
+  - pip:
+    # git repo
+    - git+https://github.com/scverse/spatialdata.git@main
+    # dependencies from spatialdata[extra]
+    - napari-spatialdata>=0.2.4
+    - spatialdata-plot
+    - spatialdata-io

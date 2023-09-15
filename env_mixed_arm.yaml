@@ -1,0 +1,43 @@
+name: ghent_hackathon_mixed_arm
+channels:
+  - conda-forge
+  - r
+  - defaults
+dependencies:
+dependencies:
+  # R
+  - r-base=4.3
+  - r-irkernel
+  - r-recommended
+  - r-devtools
+  - r-ggplot2
+  - r-patchwork
+  - r-biocmanager
+  - r-quarto
+  ## spatialdata R
+  - r-arrow
+  - r-paws
+  ## anndataR
+  - r-r6
+  - r-anndata
+  - r-knitr
+  - r-reticulate
+  - r-rmarkdown
+  - r-seuratobject
+  # Jupyter
+  - jupyterlab
+  # Python
+  - python=3.10
+  - napari=0.4.18
+  - pyqt
+  - zarr
+  - anndata>=0.9.1
+  - pyarrow
+  - pip
+  - pip:
+    # git repo
+    - git+https://github.com/scverse/spatialdata.git@main
+    # dependencies from spatialdata[extra]
+    - napari-spatialdata>=0.2.4
+    - spatialdata-plot
+    - spatialdata-io
