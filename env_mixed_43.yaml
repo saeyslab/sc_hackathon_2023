@@ -1,0 +1,57 @@
+name: ghent_hackathon_mixed_43
+
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # R
+  - r-base=4.3
+  - r-irkernel
+  - r-recommended
+  - r-devtools
+  - r-ggplot2
+  - r-patchwork
+  - r-biocmanager
+  - r-quarto
+  - bioconductor-biobase
+  - bioconductor-experimenthub
+  - bioconductor-annotationhub
+  - bioconductor-rhdf5
+  - bioconductor-ebimage
+  - bioconductor-biocstyle
+  - bioconductor-spatialexperiment
+  - bioconductor-zellkonverter
+  ## spatialdata R
+  - r-arrow
+  - bioconductor-rarr
+  - r-paws
+  ## anndataR
+  - r-r6
+  - r-anndata
+  - r-knitr
+  - r-reticulate
+  - bioconductor-rhdf5
+  - r-rmarkdown
+  - r-seuratobject
+  - bioconductor-singlecellexperiment
+  - bioconductor-summarizedexperiment
+  - bioconductor-s4vectors
+  # # Jupyter
+  # - jupyterlab
+  # - nb_conda_kernels
+  # Python
+  - python=3.10
+  - napari=0.4.18
+  - pyqt
+  - zarr
+  - anndata>=0.9.1
+  - pyarrow
+  - pip
+  # - pip:
+  #   # git repo
+  #   - git+https://github.com/scverse/spatialdata.git@main
+  #   # dependencies from spatialdata[extra]
+  #   - napari-spatialdata>=0.2.4
+  #   - spatialdata-plot
+  #   - spatialdata-io
