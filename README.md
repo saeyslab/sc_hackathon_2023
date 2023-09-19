@@ -52,6 +52,8 @@ If you want to run on a Macbook with M1 chip, you need to do one of the followin
     ```
     CONDA_SUBDIR=osx-64 conda env update -f env_mixed.yaml
     ```
+5. WORKS: Use docker with an RStudio server inside it, like e.g. [here](https://neurogenomics.github.io/MAGMA_Celltyping/articles/docker.html).
+6. FAILS: use pixi (see below) to resolve the R/Python environment. This also uses the conda packages, so will have similar issues.
 
 When using option 4, you can test you're actively using Rosetta using a `python` shell after environment activation:
 ```python
@@ -61,3 +63,26 @@ subprocess.run(["sysctl", "-n", "sysctl.proc_translated"]) # should return 1 if 
 ```
 
 
+## Using conda kernels in Pixi
+
+Install [pixi](https://prefix.dev)
+```bash
+# OR create pixi.toml and install deps
+pixi init
+pixi add ...
+
+# OR start from pixi.toml
+pixi install
+
+# setup kernels
+## find out jupyter PATH
+which jupyter
+## install kernel
+PATH=$PATH:/srv/scratch/benjaminr/anaconda3/bin pixi run R
+IRkernel::installspec(name = 'ir43pixi', displayname = 'R 4.3 pixi')
+
+## check if install
+jupyter kernelspec list
+
+## VS Code Reload, should be able to select the kernel now
+```
